@@ -9,7 +9,7 @@
 		= f.input :state
 		= f.input :state
 		= f.input :zip
-		= f.input :best_contact
+		= f.input :best_contact, :as => :radio, :collection => ["phone", "email"]
 		= f.input :volunteer_skills
 	= f.buttons
 
