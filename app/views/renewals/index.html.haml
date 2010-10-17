@@ -1,0 +1,27 @@
+%h1 Listing renewals
+
+%table
+	%tr
+		%th Date
+		%th Payment amount
+		%th Barter
+		%th Notes
+		%th Membership
+		%th
+		%th
+		%th
+		
+	- @renewals.each do |renewal|
+		%tr
+			%td= renewal.date
+			%td= renewal.payment_amount
+			%td= renewal.barter
+			%td= renewal.notes
+			%td= renewal.membership_id
+			%td= link_to 'Show', renewal
+			%td= link_to 'Edit', edit_renewal_path(renewal)
+			%td= link_to 'Destroy', renewal, :confirm => 'Are you sure?', :method => :delete
+
+%br
+
+= link_to 'New Renewal', new_renewal_path

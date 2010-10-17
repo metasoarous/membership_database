@@ -1,4 +1,6 @@
 MembershipDatabase::Application.routes.draw do
+  resources :renewals
+
   resources :members
 
   resources :memberships

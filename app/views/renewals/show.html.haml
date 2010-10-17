@@ -1,0 +1,21 @@
+%p#notice= notice
+
+%p
+	%b Date:
+	= @renewal.date
+%p
+	%b Payment amount:
+	= @renewal.payment_amount
+%p
+	%b Barter:
+	= @renewal.barter
+%p
+	%b Notes:
+	= @renewal.notes
+%p
+	%b Membership:
+	= @renewal.membership_id
+
+= link_to 'Edit', edit_renewal_path(@renewal)
+\|
+= link_to 'Back', renewals_path
