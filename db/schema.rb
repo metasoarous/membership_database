@@ -10,7 +10,14 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101017230038) do
+ActiveRecord::Schema.define(:version => 20101017230250) do
+
+  create_table "member_volunteer_category_joins", :force => true do |t|
+    t.integer  "member_id"
+    t.integer  "volunteer_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "members", :force => true do |t|
     t.integer  "membership_id"
