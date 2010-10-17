@@ -1,4 +1,6 @@
 MembershipDatabase::Application.routes.draw do
+  resources :volunteer_categories
+
   resources :renewals
 
   resources :members

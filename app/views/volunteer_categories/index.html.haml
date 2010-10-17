@@ -1,0 +1,21 @@
+%h1 Listing volunteer_categories
+
+%table
+	%tr
+		%th Name
+		%th Description
+		%th
+		%th
+		%th
+		
+	- @volunteer_categories.each do |volunteer_category|
+		%tr
+			%td= volunteer_category.name
+			%td= volunteer_category.description
+			%td= link_to 'Show', volunteer_category
+			%td= link_to 'Edit', edit_volunteer_category_path(volunteer_category)
+			%td= link_to 'Destroy', volunteer_category, :confirm => 'Are you sure?', :method => :delete
+
+%br
+
+= link_to 'New Volunteer category', new_volunteer_category_path

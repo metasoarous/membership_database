@@ -1,0 +1,12 @@
+%p#notice= notice
+
+%p
+	%b Name:
+	= @volunteer_category.name
+%p
+	%b Description:
+	= @volunteer_category.description
+
+= link_to 'Edit', edit_volunteer_category_path(@volunteer_category)
+\|
+= link_to 'Back', volunteer_categories_path

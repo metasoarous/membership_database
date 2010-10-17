@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101017222057) do
+ActiveRecord::Schema.define(:version => 20101017225041) do
 
   create_table "members", :force => true do |t|
     t.integer  "membership_id"
@@ -44,6 +44,13 @@ ActiveRecord::Schema.define(:version => 20101017222057) do
     t.boolean  "barter"
     t.text     "notes"
     t.integer  "membership_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "volunteer_categories", :force => true do |t|
+    t.string   "name"
+    t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
