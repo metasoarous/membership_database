@@ -1,0 +1,39 @@
+%p#notice= notice
+
+%p
+	%b Mailing address:
+	= @membership.mailing_address
+%p
+	%b Home address:
+	= @membership.home_address
+%p
+	%b Phone:
+	= @membership.phone
+%p
+	%b Email:
+	= @membership.email
+%p
+	%b Number:
+	= @membership.number
+%p
+	%b City:
+	= @membership.city
+%p
+	%b State:
+	= @membership.state
+%p
+	%b State:
+	= @membership.state
+%p
+	%b Zip:
+	= @membership.zip
+%p
+	%b Best contact:
+	= @membership.best_contact
+%p
+	%b Volunteer skills:
+	= @membership.volunteer_skills
+
+= link_to 'Edit', edit_membership_path(@membership)
+\|
+= link_to 'Back', memberships_path
