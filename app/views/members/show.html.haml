@@ -1,0 +1,24 @@
+%p#notice= notice
+
+%p
+	%b Membership:
+	= @member.membership_id
+%p
+	%b First name:
+	= @member.first_name
+%p
+	%b Last name:
+	= @member.last_name
+%p
+	%b Phone:
+	= @member.phone
+%p
+	%b Email:
+	= @member.email
+%p
+	%b Notes:
+	= @member.notes
+
+= link_to 'Edit', edit_member_path(@member)
+\|
+= link_to 'Back', members_path

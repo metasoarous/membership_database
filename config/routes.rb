@@ -1,4 +1,6 @@
 MembershipDatabase::Application.routes.draw do
+  resources :members
+
   resources :memberships
 
   # The priority is based upon order of creation:
