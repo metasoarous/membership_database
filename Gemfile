@@ -28,13 +28,27 @@ gem 'sqlite3-ruby', :require => 'sqlite3'
 # group :development, :test do
 #   gem 'webrat'
 # end
-gem "factory_girl_rails", ">= 1.0.0", :group => :test
+
 gem "factory_girl_generator", ">= 0.0.1", :group => [:test, :development]
 gem "hamltastic"
-gem "rspec-rails", ">= 2.0.0", :group => :test
 gem "RedCloth"
 gem "will_paginate"
 gem "sass-on-heroku"
 gem "contentable"
 gem "formtastic"
 gem "haml"
+
+group :test, :development do
+	gem "pickle", ">= 0.4.0"
+end
+
+group :test do
+	gem "factory_girl_rails", ">= 1.0.0"
+	gem 'capybara'
+	gem 'database_cleaner'
+	gem 'cucumber-rails'
+	gem 'cucumber'
+	gem 'rspec-rails', ">= 2.0.0"
+	# gem 'spork'
+	gem 'launchy'
+end
