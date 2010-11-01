@@ -1,0 +1,8 @@
+.member
+	= membership_form.fields_for :members, member do |member_form|
+		= member_form.inputs "Member #{link_to_function "Remove", "$(this).closest('.member').remove()"}" do
+			= member_form.input :first_name
+			= member_form.input :last_name
+			= member_form.input :email
+			= member_form.input :phone
+			= member_form.input :notes

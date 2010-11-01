@@ -1,0 +1,94 @@
+
+$wrapper_width = 1000px
+$sidebar_width = 200px
+$sidebar_margin = 20px
+
+
+
+// GENERAL STUFF //
+
+body
+	background-color: white
+	color: black
+	font-family: verdana, arial, helvetica, sans-serif
+	font-size: 13px
+	line-height: 18px
+
+p, ol, ul, td
+	font-family: verdana, arial, helvetica, sans-serif
+	font-size: 13px
+	line-height: 18px
+
+a
+	color: #2f0f0f
+	&:visited
+		color: #4f2222
+	&:hover
+		color: #7e7f37
+
+h1
+	font-size: 45px
+
+h4
+	font-size: 12px
+
+// ERROR STYLING //
+
+.fieldWithErrors
+	padding: 2px
+	background-color: red
+	display: table
+	text-align: center
+
+#errorExplanation
+	width: 400px
+	border: 2px solid red
+	padding: 7px
+	padding-bottom: 12px
+	margin-bottom: 20px
+	background-color: #f0f0f0
+	h2
+		text-align: left
+		font-weight: bold
+		padding: 5px 5px 5px 15px
+		font-size: 12px
+		margin: -7px
+		background-color: #cc0000
+		color: white
+	p
+		color: #333333
+		margin-bottom: 0
+		padding: 5px
+	ul li
+		font-size: 12px
+		list-style: square
+		
+		
+
+table
+	th
+		text-align: left
+		padding-right: 14px
+	td
+		padding-right: 14px
+		
+
+		
+
+.header
+	text-align: center
+	margin: 45px 0 60px
+			
+	
+.wrapper
+	width: $wrapper_width
+	
+	.nav_sidebar
+		float: left
+		width: $sidebar_width
+		margin-right: $sidebar_margin
+	
+	.content
+		float: right
+		width: $wrapper_width - $sidebar_width - $sidebar_margin
+	

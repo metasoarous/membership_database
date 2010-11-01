@@ -1,39 +1,31 @@
-%h1 Listing memberships
+%h2 Listing memberships
 
 %table
 	%tr
+		%th Number
 		%th Mailing address
 		%th Home address
-		%th Phone
-		%th Email
-		%th Number
 		%th City
 		%th State
-		%th State
 		%th Zip
-		%th Best contact
-		%th Volunteer skills
+		%th Email
+		%th Phone
 		%th
-		%th
-		%th
+
 		
 	- @memberships.each do |membership|
 		%tr
+			%td= membership.number
 			%td= membership.mailing_address
 			%td= membership.home_address
-			%td= membership.phone
-			%td= membership.email
-			%td= membership.number
 			%td= membership.city
 			%td= membership.state
-			%td= membership.state
 			%td= membership.zip
-			%td= membership.best_contact
-			%td= membership.volunteer_skills
-			%td= link_to 'Show', membership
-			%td= link_to 'Edit', edit_membership_path(membership)
-			%td= link_to 'Destroy', membership, :confirm => 'Are you sure?', :method => :delete
+			%td= membership.email
+			%td= membership.phone
 
+			%td= link_to 'Show', membership
+			
 %br
 
 = link_to 'New Membership', new_membership_path

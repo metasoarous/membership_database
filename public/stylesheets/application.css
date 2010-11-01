@@ -1,0 +1,73 @@
+body {
+  background-color: white;
+  color: black;
+  font-family: verdana, arial, helvetica, sans-serif;
+  font-size: 13px;
+  line-height: 18px; }
+
+p, ol, ul, td {
+  font-family: verdana, arial, helvetica, sans-serif;
+  font-size: 13px;
+  line-height: 18px; }
+
+a {
+  color: #2f0f0f; }
+  a:visited {
+    color: #4f2222; }
+  a:hover {
+    color: #7e7f37; }
+
+h1 {
+  font-size: 45px; }
+
+h4 {
+  font-size: 12px; }
+
+.fieldWithErrors {
+  padding: 2px;
+  background-color: red;
+  display: table;
+  text-align: center; }
+
+#errorExplanation {
+  width: 400px;
+  border: 2px solid red;
+  padding: 7px;
+  padding-bottom: 12px;
+  margin-bottom: 20px;
+  background-color: #f0f0f0; }
+  #errorExplanation h2 {
+    text-align: left;
+    font-weight: bold;
+    padding: 5px 5px 5px 15px;
+    font-size: 12px;
+    margin: -7px;
+    background-color: #cc0000;
+    color: white; }
+  #errorExplanation p {
+    color: #333333;
+    margin-bottom: 0;
+    padding: 5px; }
+  #errorExplanation ul li {
+    font-size: 12px;
+    list-style: square; }
+
+table th {
+  text-align: left;
+  padding-right: 14px; }
+table td {
+  padding-right: 14px; }
+
+.header {
+  text-align: center;
+  margin: 45px 0 60px; }
+
+.wrapper {
+  width: 1000px; }
+  .wrapper .nav_sidebar {
+    float: left;
+    width: 200px;
+    margin-right: 20px; }
+  .wrapper .content {
+    float: right;
+    width: 780px; }

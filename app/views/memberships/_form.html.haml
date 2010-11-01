@@ -9,7 +9,14 @@
 		= f.input :state
 		= f.input :state
 		= f.input :zip
-		= f.input :best_contact, :as => :radio, :collection => ["phone", "email"]
+		= f.input :best_contact, :as => :radio, :collection => ["phone", "email", "either"]
 		= f.input :volunteer_skills
+
+	.members
+		= @membership.members.each do |member|
+			= render :partial => "member", :locals => { :membership_form => f, :member => member }
+		
+	= add_member_link("Add Member", f)
+	
 	= f.buttons
 
