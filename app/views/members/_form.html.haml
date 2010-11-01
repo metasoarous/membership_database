@@ -1,10 +1,11 @@
 = semantic_form_for @member do |f|
-	- f.inputs do
-		= f.input :membership, :label_method => :home_address
+	= f.inputs do
+		= f.input :membership_id, :as => :hidden
 		= f.input :first_name
 		= f.input :last_name
 		= f.input :phone
 		= f.input :email
 		= f.input :notes
-	= f.buttons
+	= f.buttons do
+		= f.commit_button "Submit"
 

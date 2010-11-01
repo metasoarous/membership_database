@@ -10,12 +10,14 @@
 			%h1 The membership DATABASE!!!!
 		.wrapper
 			%p#notice= notice
-			.nav_sidebar
+			#nav_sidebar
 				%h3 Navigation Sidebar
 				%ul
 					%li= link_to "Membership Index", memberships_path
 					%li= link_to "Member Index", members_path
 					%li= link_to "Add New Membership", new_membership_path
 					%li= link_to "Help"
+				#searcher
+					
 			.content
 				= yield

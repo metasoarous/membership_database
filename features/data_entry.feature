@@ -60,18 +60,17 @@ Feature: Data entry
 		Given a membership exists with id: "1"
 		And I am on the membership's page
 		When I follow "Add Member"
-		Then I should be on the new member page
+		Then I should be on the new member page	
 		When I fill in the following:
-		 | Home address | 314 Thimbleberry Lane    |
 		 | First name   | Devon                    |
 		 | Last name    | Smith                    |
 		 | Email        | devonsmith@mullberry.com |
 		And I press "Submit"
-		Then 1 member should exist with membership_id: "1", first_name: "Devon", last_name: "Smith"
+		Then 1 members should exist with membership_id: "1", first_name: "Devon", last_name: "Smith"
 		And I should be on the membership's page
+		And I should see "Member was successfully created."
 		And I should see "Devon" 
 		And I should see "Smith"
-		And I should see "314 Thimbleberry Lane"
 		And I should see "devonsmith@mullberry.com"
 
 	

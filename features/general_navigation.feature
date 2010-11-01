@@ -10,7 +10,6 @@ Feature: General Navigation
 		And I should see "Member Index" within "#nav_sidebar"
 		And I should see "Add New Membership" within "#nav_sidebar"
 		And I should see "Membership Index" within "#nav_sidebar"
-		And I should see "Membership Index" within "#nav_sidebar"
 		And I should see "Help" within "#nav_sidebar"
 		
 		
@@ -33,7 +32,7 @@ Feature: General Navigation
 		
 	Scenario: Pages should have access to membership index
 		Given I am on the home page
-		When I follow "Members Index"
+		When I follow "Member Index"
 		Then I should be on the members page
 
 			

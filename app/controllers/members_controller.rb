@@ -24,7 +24,7 @@ class MembersController < ApplicationController
 	# GET /members/new
 	# GET /members/new.xml
 	def new
-		@member = Member.new
+		@member = Member.new(:membership_id => params[:membership_id])
 
 		respond_to do |format|
 			format.html # new.html.erb
@@ -44,7 +44,7 @@ class MembersController < ApplicationController
 
 		respond_to do |format|
 			if @member.save
-				format.html { redirect_to(@member, :notice => 'Member was successfully created.') }
+				format.html { redirect_to(@member.membership, :notice => 'Member was successfully created.') }
 				format.xml	{ render :xml => @member, :status => :created, :location => @member }
 			else
 				format.html { render :action => "new" }
