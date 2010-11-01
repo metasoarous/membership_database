@@ -58,7 +58,7 @@ class DatabaseLoader
 	def renewal_report(options = {} )
 		range = options[:range] || (0...@number_of_memberships)
 		options[:verbose] = options.fetch(:verbose, false)
-		options[:strength] = options.fetch(:strength, :weak)
+		options[:strength] = options.fetch(:strength, :med)
 		count = 0
 		@memberships[range].each do |membership| 
 			membership.renewal_report(options) unless options[:summary]
@@ -147,7 +147,7 @@ class DatabaseLoader
 			raise "Should have passed in one of :strong, :weak or :none to renewals_funky?" unless [:strong, :weak, :none, :med].include? strength
 			return false if strength == :none
 			issues = [:dates_and_amounts_sizes_mismatch?]
-			issues << :date_lacks_month if strength == :med
+			issues << :date_lacks_month? if strength == :med
 			issues += [:dates_contain_question_marks?, 
 				:amounts_contain_question_marks?, 
 				:dates_contain_blanks?, 
@@ -192,7 +192,14 @@ class DatabaseLoader
 				@dates.include? ""
 			end
 			def date_lacks_month?
-				@dates.include? ""
+				flag = false
+				@dates.each do |date|
+					if date.match /\A\d{4}\z/
+						flag = true
+						break
+					end
+				end
+				return flag
 			end
 			def amounts_contain_question_marks?
 				@amounts.include? "?" 
