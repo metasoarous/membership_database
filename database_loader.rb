@@ -141,12 +141,13 @@ class DatabaseLoader
 			return nil
 		end
 		
-		# strength here can be set to :strong, :weak or :none
-		def renewals_funky?(strength = :weak)
+		# strength here can be set to :strong, :med, :weak or :none
+		def renewals_funky?(strength = :med)
 			@errors ||= []
-			raise "Should have passed in one of :strong, :weak or :none to renewals_funky?" unless [:strong, :weak, :none].include? strength
+			raise "Should have passed in one of :strong, :weak or :none to renewals_funky?" unless [:strong, :weak, :none, :med].include? strength
 			return false if strength == :none
 			issues = [:dates_and_amounts_sizes_mismatch?]
+			issues << :date_lacks_month if strength == :med
 			issues += [:dates_contain_question_marks?, 
 				:amounts_contain_question_marks?, 
 				:dates_contain_blanks?, 
@@ -187,14 +188,17 @@ class DatabaseLoader
 			def dates_contain_question_marks?
 				@dates.include? "?"
 			end
-			def amounts_contain_question_marks?
-				@dates.include? "?" 
-			end
 			def dates_contain_blanks?
 				@dates.include? ""
 			end
-			def amounts_contain_blanks?
+			def date_lacks_month?
 				@dates.include? ""
+			end
+			def amounts_contain_question_marks?
+				@amounts.include? "?" 
+			end
+			def amounts_contain_blanks?
+				@amounts.include? ""
 			end
 			def load_to_db
 				create_renewal_datas
