@@ -16,7 +16,7 @@ class Searcher
 	
 	
 	
-	def initialize(attributes)
+	def initialize(attributes = {})
 		@field, @query = attributes[:fields], attributes[:query]
 	end
 	

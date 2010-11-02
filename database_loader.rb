@@ -226,12 +226,13 @@ class DatabaseLoader
 				def load_to_db(db_membership)
 					db_membership.renewals.build(:date => @date, :payment_amount => @amount)
 				end
-			end
+			end # of RenewalData class
+			
 		end # of RenewalDataSet class
 	
 	end # of MembershipData class
 
-end
+end # of DatabaseLoader class
 
 
 
