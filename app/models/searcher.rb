@@ -14,24 +14,22 @@ class Searcher
 	validates_presence_of :field
 	validates_presence_of :query 
 	
-	FIELDS = {"First Name" => :first_name, "Last Name" => :last_name }
-	MEMBER_ONLY_FIELDS = [:first_name, :last_name]
-	MEMBERSHIP_ONLY_FIELDS = [:address]
-	MEMBERSHIP_OR_MEMBER_FIELDS =	[:email, :phone]
-
+	FIELDS = {"First Name" => :first_name, "Last Name" => :last_name, "Address" => :address, "Email" => :email, "Phone" => :phone }
 	
 	def initialize(attributes = {})
-		@field, @query = attributes[:field], attributes[:query]
+		@field = attributes[:field] ? attributes[:field].to_sym : attributes[:field]
+		@query = attributes[:query]
 	end
 	
 	# This is where the magic is - it decides which of our magic scopes to call
+	# The rest of the magic is in the scopes defined in the Membership class
 	def results
 		case @field
 		when :first_name, :last_name
 			scope = ("members_" + @field.to_s + "_like").to_sym
 			return Membership.member_field_like(@field, @query)
 		when :email, :phone
-			
+			return Membership.member_or_membership_fields_like(@field, @query)
 		when :address
 			return Membership.address_like(@query)
 		end

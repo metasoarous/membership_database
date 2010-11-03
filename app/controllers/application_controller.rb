@@ -6,6 +6,6 @@ class ApplicationController < ActionController::Base
 	private
 	
 		def create_new_searcher
-			@searcher = Searcher.new
+			@new_searcher = Searcher.new
 		end
 end

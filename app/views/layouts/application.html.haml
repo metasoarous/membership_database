@@ -18,6 +18,11 @@
 					%li= link_to "Add New Membership", new_membership_path
 					%li= link_to "Help"
 				#searcher
-					
+					/ = simple_form_for @new_searcher do |form|
+					/ 	= form.inputs do
+					/ 		= form.input :field, :label => "Search by", :as => :select, :collection => Searcher::Fields
+					/ 		= form.input :query, :hint => "Enter your search query here."
+					/ 	= form.buttons
+							
 			.content
 				= yield

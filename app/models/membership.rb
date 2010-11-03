@@ -20,6 +20,10 @@ class Membership < ActiveRecord::Base
 		where({:home_address.matches => query.affix_percents} | {:mailing_address.matches => query.affix_percents})
 	}
 	
+	scope :member_or_membership_field_like, lambda {|field, query|
+		joins(:members).where({:members => {field.matches => query.affix_percents}} | {field.matches => query.affix_percents })
+	}
+	
 	def full_home_address
 		home_address + "\n" + "#{city}, #{state} #{zip}"
 	end
