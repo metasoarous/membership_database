@@ -1,12 +1,7 @@
-# This class depends on the searchlogic gem - if you want to extend or clean
-# up the search functionality here, definitely take a look at the readme on
-# github - http://github.com/binarylogic/searchlogic.
-#
-# Update - as it turns out, the main searchlogic library does not yet support
-# Rails 3, so this application is now using rd_searchlogic, a fork that has
-# baked in support. Everything should work the same though - keep posted and
-# try to switch to the main project one support is offered, as it is likely
-# to be better meaintained once things are working.
+# This class depends heavily on the magic of the meta_where gem. Wanted
+# to use searchlogic, as it seemed like the most natural tool for the job,
+# but as it turns out, it does not yet work with Rails 3. So for now (and
+# possibly ever), this will do.
 
 class Searcher
 	include ActiveModel::AttributeMethods
@@ -30,11 +25,10 @@ class Searcher
 	end
 	
 	def results
-		#debugger
 		case @field
 		when :first_name, :last_name
 			scope = ("members_" + @field.to_s + "_like").to_sym
-			return Membership.searchlogic( scope => @query)
+			return Membership.find_by_member_field_like(@field, @query)
 		when :email, :phone
 			
 		when :address

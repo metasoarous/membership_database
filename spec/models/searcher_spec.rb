@@ -7,7 +7,9 @@ describe Searcher do
 		@mems2 = Factory :membership, :mailing_address => "123 Pickleberry", :id => 2
 		@mems3 = Factory :membership, :email => "foo3@bar.com", :id => 3
 		@mems4 = Factory :membership, :phone => "425-7173", :id => 4
-		@mems4 = Factory :membership, :id => 5
+		@mems5 = Factory :membership, :id => 5
+		@mems6 = Factory :membership, :id => 6
+		
 	end
 	
 	# Note that search results are meant to return memberships, not members,
@@ -19,6 +21,7 @@ describe Searcher do
 			@mem3 = Factory :member, :first_name => "Benjamin", :last_name => "Cricket", :membership_id => 3
 			@mem4 = Factory :member, :first_name => "bEn", :last_name => "Stiller", :membership_id => 4
 			@mem5 = Factory :member, :first_name => "Daniel", :last_name => "Rosas", :membership_id => 5
+			@mem6 = Factory :member, :first_name => "Bloomberg", :last_name => "Rogers", :membership_id => 6
 		end
 		# This specific test batch is a little more thorough than the rest in
 		# testing for case insensitivity and such
@@ -34,6 +37,7 @@ describe Searcher do
 				@search.results.should include(@mems3)
 			end
 			it "should return matches case insensitively" do
+				# debugger
 				@search.results.should include(@mems4)
 			end
 			it "should not return non matches" do
