@@ -24,15 +24,16 @@ class Searcher
 		@field, @query = attributes[:field], attributes[:query]
 	end
 	
+	# This is where the magic is - it decides which of our magic scopes to call
 	def results
 		case @field
 		when :first_name, :last_name
 			scope = ("members_" + @field.to_s + "_like").to_sym
-			return Membership.find_by_member_field_like(@field, @query)
+			return Membership.member_field_like(@field, @query)
 		when :email, :phone
 			
 		when :address
-			
+			return Membership.address_like(@query)
 		end
 	end
 	

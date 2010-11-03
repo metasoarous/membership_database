@@ -6,8 +6,18 @@ class Membership < ActiveRecord::Base
 	
 	accepts_nested_attributes_for :members
 	
-	scope :find_by_member_field_like, lambda { | field, query |
-		joins(:members).where(:members => {field.matches => "%" + query + "%" })
+	# Note - affix_percents is defined in lib/string_extensions.rb. It 
+	# lets the search queries be inexact.
+	scope :member_field_like, lambda { | field, query |
+		joins(:members).where(:members => {field.matches => query.affix_percents })
+	}
+	
+	scope :find_by_field_like, lambda {|field, query| 
+		where field.matches => query.affix_percents
+	}
+	
+	scope :address_like, lambda {|query| 
+		where({:home_address.matches => query.affix_percents} | {:mailing_address.matches => query.affix_percents})
 	}
 	
 	def full_home_address
