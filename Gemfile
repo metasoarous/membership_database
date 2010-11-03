@@ -37,6 +37,8 @@ gem "sass-on-heroku"
 gem "formtastic"
 gem "haml"
 gem "simple_form"
+gem "ruby-debug"
+gem "meta_where"
 
 group :test, :development do
 	gem "pickle", ">= 0.4.0"

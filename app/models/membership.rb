@@ -9,4 +9,6 @@ class Membership < ActiveRecord::Base
 	def full_home_address
 		home_address + "\n" + "#{city}, #{state} #{zip}"
 	end
+	
+
 end
