@@ -4,7 +4,7 @@ This is the membership database for the San Juan Island Food Coop. Aside from ju
 
 The application has the following structure - Everything centers around membership records. These membership records contain basic information about address, primary contact (email, phone) and basic volunteer interests. Membership records are also associated with individual member records and renewal records. Membership records in addition can also be connected to specific volunteer interests and have their own contact info as well. 
 
-The application features searching functionality which allows the user to select a field to search by and then enter a query for searching. Eventually, there will also be the ability to search by renewal dates. 
+The application features searching functionality which allows the user to select a field to search by and then enter a query for searching. Eventually, there will also be the ability to search by renewal dates. Searches, even for fields that belong to specific members, return membership object and not member objects. (technical jargon -> this makes handling views easier - it may be worth reanalyzing this in the future)
 
 The next phase of the application development is to expand upon the volunteer organization abilities. This ideally will include the organization of volunteer interests, shift organization, hours tracking and so on. 
 
