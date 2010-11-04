@@ -6,10 +6,16 @@
 class Searcher
 	include ActiveModel::AttributeMethods
 	include ActiveModel::Validations
+	include ActiveModel::Conversion
 	
-	define_attribute_methods [:field, :query]
+	def persisted?
+		false
+	end
 	
-	attr_accessor :field, :query
+	# Id is just to fool simple_form_for into working for instance of this class.
+	define_attribute_methods [:field, :query, :id]
+	
+	attr_accessor :field, :query, :id
 	
 	validates_presence_of :field
 	validates_presence_of :query 
@@ -19,6 +25,7 @@ class Searcher
 	def initialize(attributes = {})
 		@field = attributes[:field] ? attributes[:field].to_sym : attributes[:field]
 		@query = attributes[:query]
+		@id = 1
 	end
 	
 	# This is where the magic is - it decides which of our magic scopes to call

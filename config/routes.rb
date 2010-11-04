@@ -6,6 +6,8 @@ MembershipDatabase::Application.routes.draw do
 	resources :members
 
 	resources :memberships
+	
+	resources :searchers
 
 	root :controller => :memberships, :action => :index
 	
