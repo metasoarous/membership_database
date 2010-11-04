@@ -29,7 +29,7 @@ class Searcher
 			scope = ("members_" + @field.to_s + "_like").to_sym
 			return Membership.member_field_like(@field, @query)
 		when :email, :phone
-			return Membership.member_or_membership_fields_like(@field, @query)
+			return Membership.member_or_membership_field_like(@field, @query)
 		when :address
 			return Membership.address_like(@query)
 		end

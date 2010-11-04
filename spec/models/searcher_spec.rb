@@ -2,11 +2,6 @@ require 'spec_helper'
 
 describe Searcher do
 	
-	# after :each do
-	# 	Membership.destroy_all
-	# 	Member.destroy_all
-	# end
-	
 	# Note that search results are meant to return memberships, not members,
 	# even in these cases.
 	describe "when searching by member info" do
@@ -26,7 +21,7 @@ describe Searcher do
 		# This specific test batch is a little more thorough than the rest in
 		# testing for case insensitivity and such
 		describe "using first_name" do
-			before :each do
+			before :all do
 				@search = Searcher.new(:field => :first_name, :query => "Ben")
 			end
 			it "should return all exact matches" do
@@ -44,7 +39,7 @@ describe Searcher do
 			end
 		end
 		describe "using last_name" do
-			before :each do
+			before :all do
 				@search = Searcher.new :field => :last_name, :query => "Rosas"
 			end
 			it "should return all exact matches" do
@@ -98,10 +93,10 @@ describe Searcher do
 				@search.results.should include(@mems1)
 			end
 			it "should memberships that match on membership fields" do
-				@search.results.should include(@mems5)
+				@search.results.should include(@mems2)
 			end
 			it "should not return near matches" do
-				@search.resutls.should_not include(@mems3)
+				@search.results.should_not include(@mems3)
 			end
 		end
 		describe "searching by phone" do
@@ -112,10 +107,10 @@ describe Searcher do
 				@search.results.should include(@mems1)
 			end
 			it "should memberships that match on membership fields" do
-				@search.results.should include(@mems5)
+				@search.results.should include(@mems2)
 			end
 			it "should not return near matches" do
-				@search.resutls.should_not include(@mems3)
+				@search.results.should_not include(@mems3)
 			end
 		end
 	end
