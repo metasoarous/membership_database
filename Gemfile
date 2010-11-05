@@ -44,7 +44,7 @@ group :test, :development do
 	gem "pickle", ">= 0.4.0"
 	gem "factory_girl_rails", ">= 1.0.0"
 	gem "factory_girl_generator", ">= 0.0.1"
-	gem 'capybara'
+	gem 'capybara', ">= 0.4.0"
 	gem 'database_cleaner'
 	gem 'cucumber-rails'
 	gem 'cucumber'

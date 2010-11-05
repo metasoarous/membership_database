@@ -23,9 +23,10 @@ Feature: Search
 	
 	Scenario: Searching by last name only
 		Given I am on the home page
-		When I select "Last Name" from "Search Category"
+		When I select "Last Name" from "Search by"
 		And I fill in "Winston" for "Query"
 		And I press "Search"
+		Then I should see "There is 1 match for your query."
 		Then I should see "George"
 		And I should see "george@foo.com"
 		And I should see "317-4181"
@@ -34,7 +35,7 @@ Feature: Search
 		And I should not see "Dianne"
 		And I should not see "123 Thimbleberry"
 		And I should not see "123-4567"
-		When I click "Show Membership"
+		When I follow "Show Membership"
 		Then I should see "Nelson"
 		And I should see "123 Thimbleberry"
 		And I should see "123-4567"

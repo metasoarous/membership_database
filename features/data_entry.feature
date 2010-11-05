@@ -13,7 +13,6 @@ Feature: Data entry
 		 | City            | Friday Harbor         |
 		 | State           | Washington            |
 		 | Zip             | 98250                 |
-
 		And I press "Create"
 		Then 1 memberships should exist
 		And I should be on the membership's page
@@ -32,7 +31,6 @@ Feature: Data entry
 		 | Zip          | 98250                 |
 		 | First name   | Devon                 |
 		 | Last name    | Smith                 |
-		
 		And I press "Create"
 		Then 1 memberships should exist
 		And 1 members should exist
@@ -43,16 +41,17 @@ Feature: Data entry
 	
 	Scenario: Viewing memberships with no members
     Given the following memberships exist
-      | home_address           | email               | phone       |
-      | 123 Thibleberry        | fungi@friends.com   | 2331-1231   |
-		
+      | home_address    | email             | phone     |
+      | 123 Thibleberry | fungi@friends.com | 2331-1231 |
 		When I go to the membership's page
 		Then I should see "There are currently no members associated with this membership"
+		
 		
 	@javascrit
 	Scenario: Create fields for additional members
 		Given I am on the new membership page
 		When I follow "Add Member"
+		Then show me the page
 		Then I should see 2 member field sets
 		
 	

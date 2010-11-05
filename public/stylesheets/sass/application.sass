@@ -1,7 +1,7 @@
 
-$wrapper_width = 1000px
+$wrapper_width = 1100px
 $sidebar_width = 200px
-$sidebar_margin = 20px
+$sidebar_margin = 45px
 
 
 
@@ -68,12 +68,43 @@ h4
 table
 	th
 		text-align: left
-		padding-right: 14px
+		padding-right: 10px
 	td
-		padding-right: 14px
-		
+		padding-right: 10px
 
-		
+.simple_form 
+	
+	div.input
+		margin-bottom: 10px
+		label
+			float: left
+			width: 100px
+			text-align: right
+			margin: 2px 10px
+		select, input
+			clear: left
+	div.boolean, .simple_form input[type='submit']
+		margin-left: 120px
+	div.boolean label, .simple_form label.collection_radio
+		float: none
+		margin: 0
+	label.collection_radio
+		margin-right: 10px
+		margin-left: 2px
+	.error
+		clear: left
+		margin-left: 120px
+		font-size: 12px
+		color: #D00
+		display: block
+	.hint
+		clear: both
+		margin-left: 120px
+		font-size: 12px
+		color: #555
+		display: block
+		font-style: italic
+
 
 .header
 	text-align: center
@@ -83,12 +114,31 @@ table
 .wrapper
 	width: $wrapper_width
 	
-	.nav_sidebar
+	#nav_sidebar
 		float: left
-		width: $sidebar_width
+		width: $sidebar_width - 8px
 		margin-right: $sidebar_margin
+		background-color: tan
+		padding-bottom: 30px
+		padding-left: 8px
+		
+		#searcher
+			.simple_form 
+				div.input
+					label 
+						margin-left: 2px
+						text-align: left
+					select, input
+						display: block
+						clear: both
+					.hint
+						clear: both
+						margin-left: 10px
+				
+				
 	
 	.content
 		float: right
 		width: $wrapper_width - $sidebar_width - $sidebar_margin
+	
 	

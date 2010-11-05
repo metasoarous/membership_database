@@ -13,8 +13,8 @@
 		= f.input :volunteer_skills
 
 	.members
-		= @membership.members.each do |member|
-			= render :partial => "member", :locals => { :membership_form => f, :member => member }
+		- @membership.members.each do |member|
+			= render :partial => "member_form", :locals => { :membership_form => f, :member => member }
 		
 	= add_member_link("Add Member", f)
 	

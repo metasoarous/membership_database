@@ -9,7 +9,7 @@ SimpleForm.setup do |config|
   # config.hint_tag = :span
 
   # Default tag used on errors.
-  # config.error_tag = :span
+  config.error_tag = :span
 
   # Method used to tidy up errors.
   # config.error_method = :first
@@ -27,7 +27,7 @@ SimpleForm.setup do |config|
   # config.wrapper_error_class = :field_with_errors
 
   # How the label text should be generated altogether with the required text.
-  # config.label_text = lambda { |label, required| "#{required} #{label}" }
+  config.label_text = lambda { |label, required| "#{label} #{required} <br/>" }
 
   # Whether attributes are required by default (or not). Default is true.
   # config.required_by_default = true
@@ -48,5 +48,5 @@ SimpleForm.setup do |config|
   # config.country_priority = nil
 
   # Default size for text inputs.
-  # config.default_input_size = 50
+  config.default_input_size = 24
 end

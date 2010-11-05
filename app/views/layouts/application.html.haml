@@ -17,7 +17,9 @@
 					%li= link_to "Member Index", members_path
 					%li= link_to "Add New Membership", new_membership_path
 					%li= link_to "Help"
+				%br/
 				#searcher
+					%h4 Search Memberships
 					= simple_form_for @new_searcher do |form|
 						= form.input :field, :label => "Search by", :as => :select, :collection => Searcher::FIELDS
 						= form.input :query, :hint => "Enter your search query here."

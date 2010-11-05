@@ -12,7 +12,7 @@ class Membership < ActiveRecord::Base
 		joins(:members).where(:members => {field.matches => query.affix_percents })
 	}
 	
-	scope :find_by_field_like, lambda {|field, query| 
+	scope :field_like, lambda {|field, query| 
 		where field.matches => query.affix_percents
 	}
 	

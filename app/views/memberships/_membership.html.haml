@@ -1,0 +1,23 @@
+%table.membership_data
+	%tr
+		%th Number
+		%th Home address
+		%th Mailing address
+		%th City
+		%th State
+		%th Zip
+		%th Email
+		%th Phone
+		%th
+
+	%tr
+		%td= membership.number
+		%td= membership.home_address
+		%td= membership.mailing_address
+		%td= membership.city
+		%td= membership.state
+		%td= membership.zip
+		%td= membership.email
+		%td= membership.phone
+
+		%td= link_to 'Show', membership

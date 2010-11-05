@@ -28,3 +28,13 @@ The data that was first loaded into this application to get things rolling with 
 My approach in dealing with this data has been to analyze it as thoroughly as possible using some scripting tools I created (also constructed to make loading of the data automated as possible). I decided that I would take any questionable entries relating to renewals and do my best guesses, not including any information on renewal amounts if they were left blank, but making best guesses on dates and marking the entries with flags that had "fuzzy_dates?". These flags (for now), will in general be hidden from the user, at least on the form side, though the flags will show up on the show views. This will make the interface as friendly as possible while still maintaining the best level of data integrity possible.
 
 A note with all of this in mind is that since there are so many weird cases here from the early days of the coop, it may be well nigh impossible to place much in the way of validations on forms and such, as much as that pains me. Should someone want to do that in the future, be careful, because it could make editing records that have issues very difficult. 
+
+
+
+
+
+TODO
+
+Dependent destroy on member for memberships
+spec out membership deletion
+Fix stupid has_selector? bug
