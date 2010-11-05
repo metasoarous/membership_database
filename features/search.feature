@@ -7,7 +7,7 @@ Feature: Search
 	Background: 
 	  Given the following memberships exist
 	    | home_address           | email               | phone        | id |
-	    | 123 Thimbleberry        | fungi@friends.com   | 123-4567     | 1  |
+	    | 123 Thimbleberry       | fungi@friends.com   | 123-4567     | 1  |
 	    | 4739 Jack Terrier Lane | jack@foo.com        | 123-9999     | 2  |
 	    | 231 Drive North        | north@fest.com      | 456-7890     | 3  |
 	    | Kristen and Carter     | kcart@killer.dreads | 345-123-9000 | 4  |
