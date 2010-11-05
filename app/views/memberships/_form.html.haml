@@ -1,18 +1,18 @@
 = semantic_form_for @membership do |f|
 	= f.inputs do
-		= f.input :mailing_address
+		= f.input :number
 		= f.input :home_address
+		= f.input :mailing_address
+		= f.input :city
+		= f.input :state, :as => :select, :collection => Membership::USStates
+		= f.input :zip
 		= f.input :phone
 		= f.input :email
-		= f.input :number
-		= f.input :city
-		= f.input :state
-		= f.input :state
-		= f.input :zip
 		= f.input :best_contact, :as => :radio, :collection => ["phone", "email", "either"]
 		= f.input :volunteer_skills
 
 	.members
+		%h3 Associated Members
 		- @membership.members.each do |member|
 			= render :partial => "member_form", :locals => { :membership_form => f, :member => member }
 		

@@ -1,23 +1,58 @@
-%table.membership_data
-	%tr
-		%th Number
-		%th Home address
-		%th Mailing address
-		%th City
-		%th State
-		%th Zip
-		%th Email
-		%th Phone
-		%th
+%div.membership{id => membership.id}
+	%h3 
+		Membership Number
+		= membership.number
+	%table.membership_info
+		%tr
+			%th Mailing Address
+			%td= membership.mailing_address
+		%tr
+			%th Home Address
+			%td	
+				= membership.home_address
+				%br
+				= "#{membership.city}, #{membership.state} #{membership.zip}"
+		%tr
+			%th Email
+			%td= membership.email
+		%tr
+			%th Phone
+			%td= membership.phone
+		%tr
+			%th Best Contact
+			%td= membership.best_contact
+		%tr
+			%th Volunteer Skills
+			%td= membership.volunteer_skills
+		
+		
+	%br
 
-	%tr
-		%td= membership.number
-		%td= membership.home_address
-		%td= membership.mailing_address
-		%td= membership.city
-		%td= membership.state
-		%td= membership.zip
-		%td= membership.email
-		%td= membership.phone
+	%h3 Membership Members
 
-		%td= link_to 'Show', membership
+	- if membership.members.empty?
+		%p There are currently no members associated with this membership
+	- else
+		%table.members
+			%tr
+				%th First Name
+				%th Last Name
+				%th Email
+				%th Phone
+				%th Notes
+
+			- membership.members.each do |member|
+				%tr.member{:id => member.id}
+					%td= member.first_name
+					%td= member.last_name
+					%td= member.email
+					%td= member.phone
+					%td= member.notes
+			
+	%br/
+
+	= link_to "Add Member", new_member_path_for(membership)
+	\|
+	= link_to 'Update Membership', edit_membership_path(membership)
+	\|
+	= destroy_link "Destroy Membership Record", membership, :confirm => "Are you sure you want to remove this Membership Record"

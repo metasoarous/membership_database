@@ -1,10 +1,6 @@
 %h2 Listing memberships
 
-
+%br/
 
 - @memberships.each do |membership|
 	= render :partial => "membership", :locals => {:membership => membership}
-			
-%br
-
-= link_to 'New Membership', new_membership_path

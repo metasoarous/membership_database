@@ -114,3 +114,5 @@ table td {
   .wrapper .content {
     float: right;
     width: 855px; }
+    .wrapper .content .membership {
+      margin: 20px 0 100px 10px; }

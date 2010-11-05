@@ -11,8 +11,8 @@ Feature: Data entry
 		 | Email           | gfunk@foo.com         |
 		 | Phone           | 343-2123              |
 		 | City            | Friday Harbor         |
-		 | State           | Washington            |
 		 | Zip             | 98250                 |
+		And I select "Washington" from "State"
 		And I press "Create"
 		Then 1 memberships should exist
 		And I should be on the membership's page
@@ -27,10 +27,10 @@ Feature: Data entry
 		 | Email        | gfunk@foo.com         |
 		 | Phone        | 343-2123              |
 		 | City         | Friday Harbor         |
-		 | State        | Washington            |
 		 | Zip          | 98250                 |
 		 | First name   | Devon                 |
 		 | Last name    | Smith                 |
+		And I select "Washington" from "State"
 		And I press "Create"
 		Then 1 memberships should exist
 		And 1 members should exist
@@ -51,7 +51,6 @@ Feature: Data entry
 	Scenario: Create fields for additional members
 		Given I am on the new membership page
 		When I follow "Add Member"
-		Then show me the page
 		Then I should see 2 member field sets
 		
 	
@@ -76,7 +75,7 @@ Feature: Data entry
 	Scenario: Editing membership data
 		Given a membership exists with home_address: "312 Thimbleberry"
 		And I am on the membership's page
-		And I follow "Edit Membership Data"
+		And I follow "Update Membership"
 		When I fill in "The bat cave" for "Home address"
 		And I press "Update"
 		Then 1 memberships should exist
@@ -108,15 +107,15 @@ Feature: Data entry
   #
   Scenario: Delete data_entry
     Given the following memberships exist
-      | home_address           | email               | phone       |
-      | 123 Thibleberry        | fungi@friends.com   | 2331-1231   |
-      | 4739 Jack Terrier Lane | jack@foo.com        | 3123-123123 |
-      | 231 Drive North        | north@fest.com      | 113-12424   |
-      | Kristen and Carter     | kcart@killer.dreads | 123 -3 33   |
-
-    When I delete the 2nd membership
-    Then I should see the following memberships:
-	    | Home address           | Email               | Phone       |
-	    | 123 Thibleberry        | fungi@friends.com   | 2331-1231   |
-	    | 4739 Jack Terrier Lane | jack@foo.com        | 3123-123123 |
-	    | Kristen and Carter     | kcart@killer.dreads | 123 -3 33   |
+      | home_address           | email               | phone       | number |
+      | 123 Thibleberry        | fungi@friends.com   | 2331-1231   | 1      |
+      | 4739 Jack Terrier Lane | jack@foo.com        | 3123-123123 | 2      |
+      | 231 Drive North        | north@fest.com      | 113-12424   | 3      |
+      | Kristen and Carter     | kcart@killer.dreads | 123 -3 33   | 4      |
+		And I am on the memberships page
+		And I follow "Destroy Membership Record" within ".membership#1"
+		Then I should see "Listing memberships"
+		And I should see "Membership successfully destroyed."
+		And I should not see "Membership Number 1"
+		And 3 memberships should exist
+		

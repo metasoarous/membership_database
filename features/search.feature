@@ -7,7 +7,7 @@ Feature: Search
 	Background: 
 	  Given the following memberships exist
 	    | home_address           | email               | phone        | id |
-	    | 123 Thibleberry        | fungi@friends.com   | 123-4567     | 1  |
+	    | 123 Thimbleberry        | fungi@friends.com   | 123-4567     | 1  |
 	    | 4739 Jack Terrier Lane | jack@foo.com        | 123-9999     | 2  |
 	    | 231 Drive North        | north@fest.com      | 456-7890     | 3  |
 	    | Kristen and Carter     | kcart@killer.dreads | 345-123-9000 | 4  |
@@ -31,12 +31,8 @@ Feature: Search
 		And I should see "george@foo.com"
 		And I should see "317-4181"
 		And I should see "Winston"
-		And I should not see "Nelson"
+		And I should see "Nelson"
 		And I should not see "Dianne"
-		And I should not see "123 Thimbleberry"
-		And I should not see "123-4567"
-		When I follow "Show Membership"
-		Then I should see "Nelson"
 		And I should see "123 Thimbleberry"
 		And I should see "123-4567"
 		
