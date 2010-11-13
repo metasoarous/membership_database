@@ -1,4 +1,4 @@
-%div.membership{id => membership.id}
+%div.membership.ui-widget-content{:id => membership.id}
 	%h3 
 		Membership Number
 		= membership.number
@@ -28,7 +28,7 @@
 		
 	%br
 
-	%h3 Membership Members
+	%h3 Members
 
 	- if membership.members.empty?
 		%p There are currently no members associated with this membership
@@ -42,17 +42,36 @@
 				%th Notes
 
 			- membership.members.each do |member|
-				%tr.member{:id => member.id}
+				%tr.member{:id => "member_#{member.id}"}
 					%td= member.first_name
 					%td= member.last_name
 					%td= member.email
 					%td= member.phone
 					%td= member.notes
+					
+
+	%h3 Renewals/Dues
+
+	- if membership.renewals.empty?
+		%p There are currently no renewals associated with this membership
+	- else
+		%table.renewals
+			%tr
+				%th Date
+				%th Amount
+				%th Notes
+
+			- membership.renewals.each do |renewal|
+				%tr.renewal{:id => "renewal_#{renewal.id}"}
+					%td= renewal.date.strftime("%B %d, %Y") if renewal.date
+					%td= renewal.barter? ? "barter" : number_to_currency(renewal.payment_amount)
+					%td= renewal.notes
 			
 	%br/
-
-	= link_to "Add Member", new_member_path_for(membership)
-	\|
+	
+	
 	= link_to 'Update Membership', edit_membership_path(membership)
+	\|
+	= link_to "Add Member", new_member_path_for(membership)
 	\|
 	= destroy_link "Destroy Membership Record", membership, :confirm => "Are you sure you want to remove this Membership Record"

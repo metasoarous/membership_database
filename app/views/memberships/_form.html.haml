@@ -1,22 +1,35 @@
-= semantic_form_for @membership do |f|
-	= f.inputs do
-		= f.input :number
-		= f.input :home_address
-		= f.input :mailing_address
-		= f.input :city
-		= f.input :state, :as => :select, :collection => Membership::USStates
-		= f.input :zip
-		= f.input :phone
-		= f.input :email
-		= f.input :best_contact, :as => :radio, :collection => ["phone", "email", "either"]
-		= f.input :volunteer_skills
 
-	.members
-		%h3 Associated Members
-		- @membership.members.each do |member|
-			= render :partial => "member_form", :locals => { :membership_form => f, :member => member }
 		
-	= add_member_link("Add Member", f)
+
+= semantic_form_for @membership do |f|
+	= tabs_for :id => :membership_form_tabs do |tabs|
+		- tabs.create :membership_data, "Membership Data" do
+			= f.inputs do
+				= f.input :number
+				= f.input :home_address
+				= f.input :mailing_address
+				= f.input :city
+				= f.input :state, :as => :select, :collection => Membership::USStates
+				= f.input :zip
+				= f.input :phone
+				= f.input :email
+				= f.input :best_contact, :as => :radio, :collection => ["phone", "email", "either"]
+				= f.input :volunteer_skills
+				
+		- tabs.create :member_data, "Member Data" do
+			.members
+				- @membership.members.each do |member|
+					= render :partial => "member_form", :locals => { :membership_form => f, :member => member }
+			= add_member_link("Add Member", f)
+		
+		- tabs.create :renewals, "Renewals" do
+			.renewals
+				- @membership.renewals.each do |renewal|
+					= render :partial => "renewal_form", :locals => {:membership_form => f, :renewal => renewal }
+			= add_renewal_link("Add Renewal", f)
+			
 	
 	= f.buttons
+	
+	
 

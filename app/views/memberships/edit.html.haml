@@ -1,9 +1,11 @@
 %h2 Editing membership
 
+= link_to 'Show', @membership
+\|
+= link_to 'Back', memberships_path
+
 %br/
 
 = render 'form'
 
-= link_to 'Show', @membership
-\|
-= link_to 'Back', memberships_path
+

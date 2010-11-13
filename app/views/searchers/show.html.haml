@@ -8,16 +8,5 @@
 		= "are #{@results.size} matches"
 	for your query.
 	
-%table.search_results
-	%tr
-		%th Number
-		%th Home address
-		%th Mailing address
-		%th City
-		%th State
-		%th Zip
-		%th Email
-		%th Phone
-		%th
 	- @results.each do |membership|
 		= render :partial => "memberships/membership", :locals => {:membership => membership}

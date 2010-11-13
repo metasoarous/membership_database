@@ -1,6 +1,6 @@
-.member
+.member{:id => (member.id ? "member_#{member.id}" : nil)}
 	= membership_form.fields_for :members, member do |member_form|
-		= member_form.inputs "<h4>Member</h4> #{link_to_function "Remove", "$(this).closest('.member').remove()"}" do
+		= member_form.inputs member_header(member) do
 			= member_form.input :first_name
 			= member_form.input :last_name
 			= member_form.input :email

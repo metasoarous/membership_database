@@ -44,3 +44,7 @@ h2. TODO
 ** 	in index?
 * Searching by renewal dates
 **	How to do this
+
+
+* Unique membership numbers?
+* Separate lines by breaks and/or paragraphs in text field displays

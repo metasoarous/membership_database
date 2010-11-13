@@ -47,7 +47,7 @@ Feature: Data entry
 		Then I should see "There are currently no members associated with this membership"
 		
 		
-	@javascrit
+	@javascrit @wip
 	Scenario: Create fields for additional members
 		Given I am on the new membership page
 		When I follow "Add Member"
@@ -118,4 +118,56 @@ Feature: Data entry
 		And I should see "Membership successfully destroyed."
 		And I should not see "Membership Number 1"
 		And 3 memberships should exist
+		
+	@javascript
+	Scenario Outline: Add renewal data
+		Given a membership exists
+		And I am on the memberships page
+		When I follow "Update Membership"
+		And I follow "Renewals"
+		And I follow "Add Renewal"
+		And I fill in the following:
+		 | Payment amount | <amount>             |
+		 | Notes          | Very smelly payment! |
+		And I <check?> "Barter?"
+		And I select "02/24/2009" as the date
+		And I press "Update"
+		Then I should see "Membership successfully updated."
+		And I should be on the membership index
+		And I should see "<amount_to_see>"
+		And I should see "Feb"
+		And I should see "2009"
+		And I should see "24"
+		And 1 renewals should exist
+		
+		Examples:
+		 | amount | check?  | amount_to_see |
+		 | 23     | uncheck | $23.00        |
+		 |        | check   | barter        |
+		 | 34.456 | uncheck | $34.46        |
+		
+	@javascript
+	Scenario: Add multiple renewal dates
+		Given a membership exists
+		And that membership has 1 renewal
+		And I am on the memberships page
+		When I follow "Update Membership"
+		And I follow "Renewals"
+		And I follow "Add Renewal"
+		And I fill in "this is a silly note" for "Notes"
+		And I press "Update"
+		Then I should see "Membership was successfully updated."
+		And I should see "this is a silly note"
+		And 2 renewals should exist
+		
+	@javascript
+	Scenario: Delete renewal and records in form
+		Given a membership exists
+		And that membership has 1 renewal
+		And I am on the memberships page
+		And I follow "Update Membership"
+		When I follow "Renewals"
+		And I follow "Delete Record" and click OK
+		Then I should see "Renewal record successfully deleted."
+		And 0 renewals should exist
 		

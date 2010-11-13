@@ -16,11 +16,20 @@ form.formtastic fieldset ol li fieldset legend { margin-left: -6px;}
 form.formtastic fieldset.buttons li.commit {padding: 20px 50px 2px 0; overflow: visible; }
 form.formtastic fieldset.inputs li {overflow: visible; }
 
-form.formtastic fieldset > ol > li.string input { max-width:30%; }
-form.formtastic fieldset > ol > li.password input { max-width: 13em; }
-form.formtastic fieldset > ol > li.numeric input { max-width:30%; }
+form.formtastic fieldset > ol > li label { padding-right: 5%; }
+form.formtastic fieldset > ol > li > li label { padding-right: 5%;}
+form.formtastic fieldset > ol > li.date fieldset ol li label {padding-right: 5%; margin-right:30px;}
 
-form.formtastic fieldset > ol > li.text textarea { width:40%; height: 13em;}
+form.formtastic fieldset > ol > li.string input { max-width:45%; }
+form.formtastic fieldset > ol > li.password input { max-width: 13em; }
+form.formtastic fieldset > ol > li.numeric input { max-width:45%; }
+form.formtastic fieldset > ol > li.date fieldset ol li label input {max-width:40%; padding-left:20px;}
+
+
+form.formtastic fieldset > ol > li p.inline-hints { color:#666; margin:0.5em 0 0 200px; }
+
+
+form.formtastic fieldset > ol > li.text textarea { width:60%; height: 13em;}
 
 form.formtastic fieldset > ol > li.radio fieldset ol { display:inline; margin-bottom:10px; }
 form.formtastic fieldset > ol > li.radio fieldset ol li { list-style:none; display:inline; padding-right:15px; width:40px; margin:1em 0 0.5em 0; }

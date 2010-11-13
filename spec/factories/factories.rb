@@ -17,3 +17,7 @@ end
 Factory.define :membership_volunteer_category_join do |mvc|
 	
 end
+
+Factory.define :renewal do |r|
+	
+end

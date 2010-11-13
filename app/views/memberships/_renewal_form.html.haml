@@ -1,0 +1,8 @@
+.renewal{:id => (renewal.id ? "renewal_#{renewal.id}" : nil)}
+	= membership_form.fields_for :renewals, renewal do |renewal_form|
+		= renewal_form.inputs renewal_header(renewal) do
+			= renewal_form.input :date, :start_year => 2007, :end_year => Date.today.year + 1
+			= renewal_form.input :payment_amount
+			= renewal_form.input :barter, :label => "Barter?"
+			%br/
+			= renewal_form.input :notes, :hint => "Describe any weird issues or circumstances here."

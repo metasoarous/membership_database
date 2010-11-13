@@ -20,7 +20,7 @@ class Searcher
 	validates_presence_of :field
 	validates_presence_of :query 
 	
-	FIELDS = {"First Name" => :first_name, "Last Name" => :last_name, "Address" => :address, "Email" => :email, "Phone" => :phone }
+	FIELDS = [["First Name", :first_name], ["Last Name", :last_name], ["Address", :address], ["Email", :email], ["Phone", :phone] ]
 	
 	def initialize(attributes = {})
 		@field = attributes[:field] ? attributes[:field].to_sym : attributes[:field]
@@ -34,12 +34,13 @@ class Searcher
 		case @field
 		when :first_name, :last_name
 			scope = ("members_" + @field.to_s + "_like").to_sym
-			return Membership.member_field_like(@field, @query)
+			results = Membership.member_field_like(@field, @query)
 		when :email, :phone
-			return Membership.member_or_membership_field_like(@field, @query)
+			results = Membership.member_or_membership_field_like(@field, @query)
 		when :address
-			return Membership.address_like(@query)
+			results = Membership.address_like(@query)
 		end
+		return results.order(:number.asc)
 	end
 	
 end
