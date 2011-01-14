@@ -5,12 +5,13 @@ class SearchersController < ApplicationController
 	def create
 		
 		@searcher = Searcher.new(params[:searcher])
-		
 
 		respond_to do |format|
 			if @searcher.valid?
-				@results = @searcher.results
+				@results = @searcher.results.uniq
 				format.html { render :show}
+			else
+				format.html { redirect_to "/", :notice => "Make sure you select a field for the searcher."}
 			end
 		end
 	end

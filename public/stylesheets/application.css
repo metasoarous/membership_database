@@ -103,6 +103,8 @@ table td {
     padding-bottom: 30px;
     padding-left: 8px;
     padding-top: 70px; }
+    .wrapper #nav_sidebar #searcher .simple_form div.input input {
+      width: 200px; }
     .wrapper #nav_sidebar #searcher .simple_form div.input label {
       margin-left: 2px;
       text-align: left; }

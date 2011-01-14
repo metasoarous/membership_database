@@ -22,7 +22,7 @@
 			%th Best Contact
 			%td= membership.best_contact
 		%tr
-			%th Volunteer Skills
+			%th Volunteer Skills/ Notes
 			%td= membership.volunteer_skills
 		
 		
@@ -41,7 +41,7 @@
 				%th Phone
 				%th Notes
 
-			- membership.members.each do |member|
+			- membership.members.order(:last_name.asc, :first_name.asc).each do |member|
 				%tr.member{:id => "member_#{member.id}"}
 					%td= member.first_name
 					%td= member.last_name
@@ -60,13 +60,23 @@
 				%th Date
 				%th Amount
 				%th Notes
-
-			- membership.renewals.each do |renewal|
+				
+			- fuzzy = false
+			- membership.renewals.order(:date.desc).each do |renewal|
 				%tr.renewal{:id => "renewal_#{renewal.id}"}
-					%td= renewal.date.strftime("%B %d, %Y") if renewal.date
+					
+					%td
+						- if renewal.fuzzy_date
+							= "**"
+							- fuzzy = true
+						= renewal.date.strftime("%B %d, %Y") if renewal.date
 					%td= renewal.barter? ? "barter" : number_to_currency(renewal.payment_amount)
 					%td= renewal.notes
-			
+			- if fuzzy
+				%p 
+					** Indicates that the date for this renewal record had to be estimated. To learn more about this click 
+					= link_to "here."
+				
 	%br/
 	
 	

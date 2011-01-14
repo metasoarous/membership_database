@@ -40,11 +40,33 @@ h2. TODO
 * Fix stupid has_selector? bug
 * Deal with blank entries
 * Come up with a way to order entries?
-** 	in queries?
-** 	in index?
+** in queries?
+** in index?
 * Searching by renewal dates
-**	How to do this
-
+** How to do this
+* Clean up and spec search by membership number
+* pagination for searches - (tie in with persisting forms)
+* Similarly, have sortability of comments that persists between threads?
+* current_members scope with a flag for showing current, non_current and all members in interface
+* Check boxes on side that show or hide certain parts of the membership views 
+** session stores for saving what a particular viewer wants to see
+* wants to receive newsletter
+* Cancel button on form
+* scoot radio buttons over a bit - there is overlap that is making clicking a problem
+* Should consider cleaning up searching by phone
 
 * Unique membership numbers?
-* Separate lines by breaks and/or paragraphs in text field displays
+* Separate lines by breaks and/or paragraphs in text field displays (notes)
+
+* put something in for the "click _here_" to show info about fuzzy dates.
+** Similarly, create help content item for sidebar
+* Eventually hide fuzzy dates box?
+* Cleaner handling in the future for displaying renewals?
+** Asc? Desc?
+** Edits? 
+** Views?
+* Have search by field maintain between searches
+* Expanded search field when searching by complex?
+* Ability to move members between memberships more gracefully
+* Better handling for company memberships
+* total amount payed in views?

@@ -50,8 +50,8 @@ class DatabaseLoader
 		@number_of_memberships = @memberships.size
 	end
 	
-	def load_memberships
-		@memberships.each {|membership| membership.load_to_db}
+	def load_to_db
+		@memberships.each {|membership| membership.load_to_db}; return nil
 	end
 	
 	# Options :strength, :range and :verbose
@@ -77,6 +77,14 @@ class DatabaseLoader
 	def read_column_info(column, range = (0...@number_of_memberships))
 		column_info(column, range).each_with_index {|info, i| puts "#{i + range.begin} : #{info}"}
 		return nil
+	end
+	
+	def find_membership_by_number number
+		memberships.select {|m| m.number.to_i == number }
+	end
+	
+	def find_membership_by_last_name name
+		memberships.select {|m| m.last_name == name}
 	end
 	
 	
@@ -107,6 +115,14 @@ class DatabaseLoader
 			define_method field do
 				@data[field]
 			end
+		end
+		
+		def inspect
+			string = "Membership ##{number} - #{last_name}, #{first_name}\n"
+			DatabaseLoader.fields[2,20].each do |field|
+				string += "\t#{field.to_s} => \t#{self.send(field)}\n"
+			end
+			return string
 		end
 		
 		def info(column)
@@ -163,6 +179,7 @@ class DatabaseLoader
 			attributes.merge(:accepts_newsletters => self.accepts_newsletters != "no" )
 			@db_membership = Membership.new(attributes)
 			self.renewal_data_set.load_to_db
+			@db_membership.members.build(:first_name => first_name, :last_name => last_name)
 			@db_membership.save
 		end
 		
@@ -201,6 +218,9 @@ class DatabaseLoader
 				end
 				return flag
 			end
+			def dates_valid_for_save?
+				not (dates_and_amounts_sizes_mismatch? or dates_contain_question_marks? or dates_contain_blanks? or date_lacks_month?)
+			end
 			def amounts_contain_question_marks?
 				@amounts.include? "?" 
 			end
@@ -208,8 +228,13 @@ class DatabaseLoader
 				@amounts.include? ""
 			end
 			def load_to_db
-				create_renewal_datas
-				@renewal_datas.each {|rd| rd.load_to_db(@membership.db_membership) }
+				if dates_valid_for_save?
+					create_renewal_datas
+					@renewal_datas.each {|rd| rd.load_to_db(@membership.db_membership) }
+				else
+					puts "Problems with membership ##{@membership.number}"
+					puts report
+				end
 			end
 			def create_renewal_datas
 				@renewal_datas ||= []
@@ -224,7 +249,10 @@ class DatabaseLoader
 					@date, @amount = date, amount
 				end
 				def load_to_db(db_membership)
-					db_membership.renewals.build(:date => @date, :payment_amount => @amount)
+					month, year = @date.split("/")
+					date = Date.civil(year.to_i, month.to_i, 15)
+					amount = @amount.gsub("$","").to_i
+					db_membership.renewals.build(:date => date, :payment_amount => amount.to_i)
 				end
 			end # of RenewalData class
 			
@@ -242,3 +270,33 @@ end # of DatabaseLoader class
 
 $current_members = DatabaseLoader.new("current_members.txt")
 $past_members = DatabaseLoader.new("past_members.txt")
+
+
+
+
+# __________________LOADING NOTES____________________________
+# All the data has now been loaded up. My method was to go through and do the 
+# $current_members first, leaving out renewals when there were sticky points 
+# or questions about what was what. I went through and took care of these 
+# manually. After fixing all of these, I went through the $past_members 
+# and loaded them up one by one, first checkin to make sure they were not 
+# duplicates, as I realized many of them were. 
+#
+# Any records in $past_members that did not have a membership number were
+# left out. Also, the following were left out because they simply didn't have 
+# very good renewal date info (all they are good for basically).
+# 
+# membership number 190
+# membership number 15 amy anderson
+# membership number 135 Jan Smith
+# membership number 126 Sarah Hanson
+# membership number 117 Marilyn Karon
+# Membership #116 - Gallivan, Maggie
+# Membership #115 - Danaher/Bennett, Lynn & Ryan
+#
+# At this point I decided that there is no harm in having the records with no 
+# renewals on record worth beans, but I'll list these here.
+#
+# => Membership #109 - Slugg, Kris
+# => Membership #103 - Morrison, Jim
+# => Membership #102 - Carroll, Jim

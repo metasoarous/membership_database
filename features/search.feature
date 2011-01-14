@@ -6,11 +6,11 @@ Feature: Search
 	# Set up of some dummy memberships and members for ourselves. 
 	Background: 
 	  Given the following memberships exist
-	    | home_address           | email               | phone        | id |
-	    | 123 Thimbleberry       | fungi@friends.com   | 123-4567     | 1  |
-	    | 4739 Jack Terrier Lane | jack@foo.com        | 123-9999     | 2  |
-	    | 231 Drive North        | north@fest.com      | 456-7890     | 3  |
-	    | Kristen and Carter     | kcart@killer.dreads | 345-123-9000 | 4  |
+	    | home_address           | email               | phone        | number | id |
+	    | 123 Thimbleberry       | fungi@friends.com   | 123-4567     | 13     | 1  |
+	    | 4739 Jack Terrier Lane | jack@foo.com        | 123-9999     | 24     | 2  |
+	    | 231 Drive North        | north@fest.com      | 456-7890     | 35     | 3  |
+	    | Kristen and Carter     | kcart@killer.dreads | 345-123-9000 | 46     | 4  |
 	
 		And the following members exist
 		 | first_name | last_name | email                | phone        | membership_id |
@@ -35,5 +35,20 @@ Feature: Search
 		And I should not see "Dianne"
 		And I should see "123 Thimbleberry"
 		And I should see "123-4567"
+		
+	# Should probably spec out what happens to numbers that are similar - 224 and 24.
+	Scenario: Searching by membership number
+		Given I am on the home page
+		When I select "Membership Number" from "Search by"
+		And I fill in "24" for "Query"
+		And I press "Search"
+		Then I should see "There is 1 match for your query."
+		And I should see "4739 Jack Terrier Lane"
+		
+	Scenario: Searching by blank field returns error
+		Given I am on the home page
+		When I fill in "This shouldn't work" for "Query"
+		And I press "Search"
+		Then I should see "Make sure you select a field for the searcher"
 		
 		

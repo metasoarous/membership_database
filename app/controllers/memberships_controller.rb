@@ -2,7 +2,7 @@ class MembershipsController < ApplicationController
 	# GET /memberships
 	# GET /memberships.xml
 	def index
-		@memberships = Membership.all
+		@memberships = Membership.order(:number.asc).paginate(:page => params[:page])
 
 		respond_to do |format|
 			format.html # index.html.erb

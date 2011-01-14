@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101030023257) do
+ActiveRecord::Schema.define(:version => 20101114005038) do
 
   create_table "member_volunteer_category_joins", :force => true do |t|
     t.integer  "member_id"
@@ -61,6 +61,7 @@ ActiveRecord::Schema.define(:version => 20101030023257) do
     t.integer  "membership_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "fuzzy_date"
   end
 
   create_table "volunteer_categories", :force => true do |t|

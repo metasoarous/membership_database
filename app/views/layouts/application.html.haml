@@ -21,7 +21,7 @@
 				#searcher
 					%h4 Search Memberships
 					= simple_form_for @new_searcher do |form|
-						= form.input :field, :label => "Search by", :as => :select, :collection => Searcher::FIELDS
+						= form.input :field, :label => "Search by", :as => :select, :collection => Searcher::FIELDS, :hint => "Don't select 'Complex' unless you REALLY know what you are doing!"
 						= form.input :query, :hint => "Enter your search query here."
 						= form.submit "Search"
 							

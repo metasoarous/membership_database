@@ -15,7 +15,7 @@ module MembershipsHelper
 			renewal = render(:partial => "renewal_form", :locals => {:membership_form => form, :renewal => Renewal.new})
 			page << %{
 				var new_renewal_id = new Date().getTime();
-				$('.renewals').append( "#{ escape_javascript renewal }".replace(/membership_renewals_attributes_\\d+_/g, "membership_renewals_attributes_" + new_renewal_id + "_").replace(/\\[renewals_attributes\\]\\[\\d+\\]/g, "[renewals_attributes][" + new_renewal_id + "]") );
+				$('.renewals').prepend( "#{ escape_javascript renewal }".replace(/membership_renewals_attributes_\\d+_/g, "membership_renewals_attributes_" + new_renewal_id + "_").replace(/\\[renewals_attributes\\]\\[\\d+\\]/g, "[renewals_attributes][" + new_renewal_id + "]") );
 				}
 		end
 	end

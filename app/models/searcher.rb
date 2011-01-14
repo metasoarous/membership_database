@@ -18,27 +18,40 @@ class Searcher
 	attr_accessor :field, :query, :id
 	
 	validates_presence_of :field
-	validates_presence_of :query 
+	validates_presence_of :query
 	
-	FIELDS = [["First Name", :first_name], ["Last Name", :last_name], ["Address", :address], ["Email", :email], ["Phone", :phone] ]
+	FIELDS = [["First Name", :first_name], ["Last Name", :last_name], ["Address", :address], ["Email", :email], ["Phone", :phone], ["Membership Number", :number], ["Complex", :complex] ]
 	
 	def initialize(attributes = {})
-		@field = attributes[:field] ? attributes[:field].to_sym : attributes[:field]
-		@query = attributes[:query]
-		@id = 1
+		if attributes[:field].nil? or attributes[:field] == "" 
+			@field = nil
+		else
+			@field = attributes[:field] ? attributes[:field].to_sym : attributes[:field]
+			@query = attributes[:query]
+			@id = 1
+		end
 	end
 	
 	# This is where the magic is - it decides which of our magic scopes to call
 	# The rest of the magic is in the scopes defined in the Membership class
 	def results
 		case @field
+		when nil
+			return Membership.all
+		# Member only fields
 		when :first_name, :last_name
 			scope = ("members_" + @field.to_s + "_like").to_sym
 			results = Membership.member_field_like(@field, @query)
+		# Member or Membership fields
 		when :email, :phone
 			results = Membership.member_or_membership_field_like(@field, @query)
+		# Membership only fields
 		when :address
 			results = Membership.address_like(@query)
+		when :number
+			results = Membership.where(:number => @query)
+		when :complex
+			results = eval("Membership." + @query)
 		end
 		return results.order(:number.asc)
 	end

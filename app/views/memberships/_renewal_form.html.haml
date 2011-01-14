@@ -2,7 +2,13 @@
 	= membership_form.fields_for :renewals, renewal do |renewal_form|
 		= renewal_form.inputs renewal_header(renewal) do
 			= renewal_form.input :date, :start_year => 2007, :end_year => Date.today.year + 1
+			/ Commenting this out for the moment - don't really need now that we are
+			/ working with good records
+			/ = renewal_form.input :fuzzy_date, :label => "Fuzzy date?", :hint => "Check this if the renewal date is uncertain (This is mostly for old records)."
+			/ %br/
 			= renewal_form.input :payment_amount
-			= renewal_form.input :barter, :label => "Barter?"
-			%br/
-			= renewal_form.input :notes, :hint => "Describe any weird issues or circumstances here."
+			/ Commenting this out for the moment - don't really need now that we are
+			/ working with good records
+			/ = renewal_form.input :barter, :label => "Barter?", :hint => "Bartering was once allowed in lieu of membership fees - leave amount blank if this is checked."
+			/ %br/
+			= renewal_form.input :notes, :hint => "Describe any weird issues, circumstances or pertinent information here."

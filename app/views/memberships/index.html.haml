@@ -4,3 +4,8 @@
 
 - @memberships.each do |membership|
 	= render :partial => "membership", :locals => {:membership => membership}
+
+= will_paginate @memberships
+
+%br/
+%br/
