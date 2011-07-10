@@ -1,6 +1,6 @@
 require 'rubygems'
 
-require "lib/string_extensions"
+require './lib/string_extensions'
 
 # Set up gems listed in the Gemfile.
 gemfile = File.expand_path('../../Gemfile', __FILE__)

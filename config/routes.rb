@@ -1,4 +1,6 @@
 MembershipDatabase::Application.routes.draw do
+  get "sessions/toggle_membership_view"
+
 	resources :volunteer_categories
 
 	resources :renewals

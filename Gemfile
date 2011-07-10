@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.0.0'
+gem 'rails', '3.0.8'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
@@ -29,18 +29,18 @@ gem 'sqlite3-ruby', :require => 'sqlite3'
 #   gem 'webrat'
 # end
 
-gem "hamltastic"
-gem "RedCloth"
+
+gem "RedCloth", ">= 4.2.7"
 gem "will_paginate"
 gem "sass-on-heroku"
 # gem "contentable"
 gem "formtastic"
-gem "haml"
+gem "haml", ">= 3.1.2"
 gem "simple_form"
-gem "ruby-debug"
 gem "meta_where"
 
 group :test, :development do
+	gem "hamltastic", :git => "https://metasoarous@github.com/metasoarous/hamltastic.git"
 	gem "pickle", ">= 0.4.0"
 	gem "factory_girl_rails", ">= 1.0.0"
 	gem "factory_girl_generator", ">= 0.0.1"
@@ -50,5 +50,6 @@ group :test, :development do
 	gem 'cucumber'
 	gem 'rspec-rails', ">= 2.0.0"
 	gem 'launchy'
+	gem "ruby-debug19"
 end
 
