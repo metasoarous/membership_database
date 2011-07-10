@@ -35,5 +35,20 @@ class Membership < ActiveRecord::Base
 		home_address + "\n" + "#{city}, #{state} #{zip}"
 	end
 	
+	def last_names
+		members.map {|m| m.last_name}.uniq.join("/")
+	end
+	
+	def first_names
+		members.map {|m| m.first_name}.uniq.join("/")
+	end
+	
+	def last_renewal
+		renewals.order(:date.asc).last
+	end
+	
+	def last_renewal_date
+		last_renewal ? last_renewal.date.to_s : "NA"
+	end
 
 end

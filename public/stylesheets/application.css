@@ -54,9 +54,17 @@ h4 {
 
 table th {
   text-align: left;
-  padding-right: 10px; }
+  padding-right: 11px; }
 table td {
-  padding-right: 10px; }
+  padding-right: 12px;
+  padding-bottom: 4px;
+  vertical-align: top; }
+table.memberships th.address {
+  min-width: 130px; }
+table.memberships th.full_record {
+  min-width: 70px; }
+table.memberships th.edit {
+  min-width: 70px; }
 
 .simple_form div.input {
   margin-bottom: 10px; }
@@ -115,8 +123,10 @@ table td {
       clear: both;
       margin-left: 10px; }
   .wrapper .content {
-    float: right;
-    width: 855px; }
+    padding-top: 60px;
+    padding-left: 285px; }
+    .wrapper .content #view_toggler {
+      margin-bottom: 50px; }
     .wrapper .content #membership_form_tabs {
       width: 650px; }
     .wrapper .content .membership {

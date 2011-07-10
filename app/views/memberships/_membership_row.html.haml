@@ -1,0 +1,11 @@
+%tr.membership
+	%td= membership.number
+	%td= membership.last_names
+	%td= membership.first_names
+	%td= membership.mailing_address
+	%td= membership.home_address
+	%td= membership.phone
+	%td= membership.email.split(",").join(", ")
+	%td= membership.last_renewal_date
+	%td= link_to "Full Record", membership_path(membership)
+	%td= link_to "Edit Record", edit_membership_path(membership)

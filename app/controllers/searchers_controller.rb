@@ -8,7 +8,7 @@ class SearchersController < ApplicationController
 
 		respond_to do |format|
 			if @searcher.valid?
-				@results = @searcher.results.uniq
+				@memberships = @searcher.results.uniq
 				format.html { render :show}
 			else
 				format.html { redirect_to "/", :notice => "Make sure you select a field for the searcher."}

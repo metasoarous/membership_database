@@ -1,0 +1,23 @@
+%div#view_toggler
+	= toggle_membership_view_link
+	
+- case session[:membership_view]
+- when :cards
+	- @memberships.each do |membership|
+		= render :partial => "memberships/membership_card", :locals => {:membership => membership}
+	
+- when :table
+	%table.memberships
+		%tr
+			%th.number Number
+			%th.last_names Last Name(s)
+			%th.first_names First Name(s)
+			%th.address Mailing Address
+			%th.address Home Address
+			%th Phone
+			%th.email Email
+			%th Last Renewal
+			%th.full_record
+			%th.edit
+		- @memberships.each do |membership|
+			= render :partial => "memberships/membership_row", :locals => {:membership => membership}

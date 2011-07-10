@@ -32,7 +32,7 @@ gem 'sqlite3-ruby', :require => 'sqlite3'
 
 gem "RedCloth", ">= 4.2.7"
 gem "will_paginate"
-gem "sass-on-heroku"
+gem "sass"
 # gem "contentable"
 gem "formtastic"
 gem "haml", ">= 3.1.2"

@@ -1,5 +1,5 @@
 MembershipDatabase::Application.routes.draw do
-  get "sessions/toggle_membership_view"
+  get "sessions/toggle_membership_view", :as => :toggle_membership_view
 
 	resources :volunteer_categories
 

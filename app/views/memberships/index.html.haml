@@ -1,9 +1,7 @@
 %h2 Listing memberships
 
-%br/
 
-- @memberships.each do |membership|
-	= render :partial => "membership", :locals => {:membership => membership}
+= render :partial => "membership_results"
 
 = will_paginate @memberships
 

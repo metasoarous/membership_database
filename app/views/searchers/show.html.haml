@@ -2,11 +2,8 @@
 
 %p
 	There
-	- if @results.size == 1
-		= "is #{@results.size} match"
-	- else
-		= "are #{@results.size} matches"
-	for your query.
+	= @memberships.size == 1 ? "is" : "are"
+	= @memberships.size
+	results for your query.
 	
-	- @results.each do |membership|
-		= render :partial => "memberships/membership", :locals => {:membership => membership}
+	= render :partial => "memberships/membership_results"

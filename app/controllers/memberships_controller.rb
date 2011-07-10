@@ -2,7 +2,8 @@ class MembershipsController < ApplicationController
 	# GET /memberships
 	# GET /memberships.xml
 	def index
-		@memberships = Membership.order(:number.asc).paginate(:page => params[:page])
+		per_page = session[:membership_view] == :cards ? 20 : 100
+		@memberships = Membership.order(:number.asc).paginate(:page => params[:page], :per_page => per_page)
 
 		respond_to do |format|
 			format.html # index.html.erb
