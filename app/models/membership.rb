@@ -31,6 +31,11 @@ class Membership < ActiveRecord::Base
 		joins(:members).where({:members => {field.matches => query.affix_percents}} | {field.matches => query.affix_percents })
 	}
 	
+	scope :renewal_date_between, lambda {|date_range|
+		start_date, end_date = date_range.split("-").map {|d| Chronic.parse(d)}
+		joins(:renewals).where(:renewals => ({:date.gt => start_date} & {:date.lt => end_date}))
+	}
+	
 	def full_home_address
 		home_address + "\n" + "#{city}, #{state} #{zip}"
 	end

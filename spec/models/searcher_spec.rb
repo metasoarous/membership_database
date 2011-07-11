@@ -114,4 +114,36 @@ describe Searcher do
 			end
 		end
 	end
+	
+	describe "when searching by renewal date" do
+		before :each do
+			@mems1 = Factory :membership
+			@mems2 = Factory :membership
+			@mems3 = Factory :membership
+			
+			@renewal11 = Factory :renewal, :date => Date.civil(2004,02,01), :membership => @mems1
+			@renewal12 = Factory :renewal, :date => Date.civil(2005,02,01), :membership => @mems1
+			@renewal21 = Factory :renewal, :date => Date.civil(2005,02,01), :membership => @mems2
+			@renewal22 = Factory :renewal, :date => Date.civil(2006,02,01), :membership => @mems2
+			@renewal31 = Factory :renewal, :date => Date.civil(2006,02,01), :membership => @mems3
+			@renewal32 = Factory :renewal, :date => Date.civil(2007,02,01), :membership => @mems3
+			
+			@search = Searcher.new :field => :renewal_date, :query => "1/1/2006 - 1/1/2007"
+		end
+		it "should catch memberships with a first renewal in the range" do
+			@search.results.should include(@mems3)
+		end
+		it "should catch memberships with a last renewal in the range" do
+			@search.results.should include(@mems2)
+		end
+		it "should not catch memberships with no renewals in the range" do
+			@search.results.should_not include(@mems1)
+		end
+		it "should work with chronic ranges" do
+			results = Searcher.new(:field => :renewal_date, :query => "May 2006 - today").results
+			results.should include(@mems3)
+			results.should_not include(@mems2)
+			results.should_not include(@mems1)
+		end
+	end	
 end

@@ -20,7 +20,7 @@ class Searcher
 	validates_presence_of :field
 	validates_presence_of :query
 	
-	FIELDS = [["First Name", :first_name], ["Last Name", :last_name], ["Address", :address], ["Email", :email], ["Phone", :phone], ["Membership Number", :number], ["Complex", :complex] ]
+	FIELDS = [["First Name", :first_name], ["Last Name", :last_name], ["Address", :address], ["Email", :email], ["Phone", :phone], ["Membership Number", :number], ["Renewal Date (start_date - end_date)", :renewal_date], ["Complex", :complex] ]
 	
 	def initialize(attributes = {})
 		if attributes[:field].nil? or attributes[:field] == "" 
@@ -50,6 +50,9 @@ class Searcher
 			results = Membership.address_like(@query)
 		when :number
 			results = Membership.where(:number => @query)
+		when :renewal_date
+			#debugger
+			results = Membership.renewal_date_between(@query)
 		when :complex
 			results = eval("Membership." + @query)
 		end

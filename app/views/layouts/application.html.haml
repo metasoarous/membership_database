@@ -3,7 +3,7 @@
 	%head
 		%title Membership database
 		= stylesheet_link_tag :all
-		= javascript_include_tag :defaults
+		= javascript_include_tag "jquery.js", "jquery-ui.js", "rails.js", "application.js"
 		= csrf_meta_tag
 	%body
 		.header
@@ -20,6 +20,7 @@
 				%br/
 				#searcher
 					%h4 Search Memberships
+					%p You are required to either enter a field query combination or a renewal range. The search will also work with both.
 					= simple_form_for @new_searcher do |form|
 						= form.input :field, :label => "Search by", :as => :select, :collection => Searcher::FIELDS, :hint => "Don't select 'Complex' unless you REALLY know what you are doing!"
 						= form.input :query, :hint => "Enter your search query here."

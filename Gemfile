@@ -38,6 +38,7 @@ gem "formtastic"
 gem "haml", ">= 3.1.2"
 gem "simple_form"
 gem "meta_where"
+gem "chronic", :require => "chronic"
 
 group :test, :development do
 	gem "hamltastic", :git => "https://metasoarous@github.com/metasoarous/hamltastic.git"
@@ -46,6 +47,7 @@ group :test, :development do
 	gem "factory_girl_generator", ">= 0.0.1"
 	gem 'capybara', ">= 0.4.0"
 	gem 'database_cleaner'
+	gem "culerity"
 	gem 'cucumber-rails'
 	gem 'cucumber'
 	gem 'rspec-rails', ">= 2.0.0"

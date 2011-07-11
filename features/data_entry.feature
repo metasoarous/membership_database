@@ -47,7 +47,7 @@ Feature: Data entry
 		Then I should see "There are currently no members associated with this membership"
 		
 		
-	@javascrit @wip
+	@wip
 	Scenario: Create fields for additional members
 		Given I am on the new membership page
 		When I follow "Add Member"
