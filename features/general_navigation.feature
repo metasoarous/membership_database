@@ -3,7 +3,7 @@ Feature: General Navigation
   We as the database maintenance folks
   Want to be able to navigate the database tool in an intuitive clean fashion
 
-  
+  @passing
   Scenario: Accessing root page and navigation links
     Given I am on the home page
 		Then I should see "Membership Index" within "#nav_sidebar"
@@ -19,17 +19,20 @@ Feature: General Navigation
 		# 	+ button generating an additional search box
 		# 	Headers also sort buttons
 		
+	@passing
 	Scenario: Root should show membership index
 		Given a membership exists with home_address: "1834 8th St"
 		And I am on the home page
 		Then I should see "Membership Index"
 		And I should see "1834 8th St"
 		
+	@passing
 	Scenario: Pages should have access to membership index
 		Given I am on the home page
 		When I follow "Membership Index"
 		Then I should be on the memberships page
 		
+	@passing
 	Scenario: Pages should have access to membership index
 		Given I am on the home page
 		When I follow "Member Index"

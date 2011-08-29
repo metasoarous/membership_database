@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.0.8'
+gem 'rails', '3.0.9'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
@@ -34,24 +34,27 @@ gem "RedCloth", ">= 4.2.7"
 gem "will_paginate"
 gem "sass"
 # gem "contentable"
-gem "formtastic"
+gem "formtastic", "~> 1.2.4"
 gem "haml", ">= 3.1.2"
 gem "simple_form"
 gem "meta_where"
 gem "chronic", :require => "chronic"
+gem "jquery_ui_rails_helpers", "~> 0.0.2"
 
 group :test, :development do
+	gem "term-ansicolor", "~>1.0.6"
 	gem "hamltastic", :git => "https://metasoarous@github.com/metasoarous/hamltastic.git"
 	gem "pickle", ">= 0.4.0"
 	gem "factory_girl_rails", ">= 1.0.0"
 	gem "factory_girl_generator", ">= 0.0.1"
-	gem 'capybara', ">= 0.4.0"
+	gem "capybara", "~>1.0.1"
+	gem 'selenium-webdriver', '~>2.4.0'
 	gem 'database_cleaner'
 	gem "culerity"
-	gem 'cucumber-rails'
-	gem 'cucumber'
+	gem "cucumber-rails", "~> 1.0.2"
+	gem "cucumber", "~>1.0.2"
 	gem 'rspec-rails', ">= 2.0.0"
 	gem 'launchy'
-	gem "ruby-debug19"
+	gem "ruby-debug19", :require => "ruby-debug"
 end
 

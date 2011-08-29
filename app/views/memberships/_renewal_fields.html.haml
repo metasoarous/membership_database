@@ -1,0 +1,15 @@
+.renewal{:id => ["renewal_#{f.object.id || 'new'}"]}
+	= f.inputs do
+		%h4 Renewal
+		= f.object.new_record? ? link_to_function("Remove", "$(this).closest('.renewal').remove()") : delete_renewal_link("Delete Record", f.object.id)
+		= f.input :date, :start_year => 2007, :end_year => Date.today.year + 1
+		= f.input :payment_amount
+		= f.input :notes, :hint => "Describe any weird issues, circumstances or pertinent information here."
+		
+		
+		/ Commenting this out for the moment - don't really need now that we are
+		/ working with good records
+		/ = renewal_form.input :fuzzy_date, :label => "Fuzzy date?", :hint => "Check this if the renewal date is uncertain (This is mostly for old records)."
+		/ = renewal_form.input :barter, :label => "Barter?", :hint => "Bartering was once allowed in lieu of membership fees - leave amount blank if this is checked."
+		/ %br/
+

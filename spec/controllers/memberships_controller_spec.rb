@@ -8,14 +8,6 @@ describe MembershipsController do
     end
   end
 
-  describe "GET index" do
-    it "assigns all memberships as @memberships" do
-      Membership.stub(:all) { [mock_membership] }
-      get :index
-      assigns(:memberships).should eq([mock_membership])
-    end
-  end
-
   describe "GET show" do
     it "assigns the requested membership as @membership" do
       Membership.stub(:find).with("37") { mock_membership }

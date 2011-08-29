@@ -3,6 +3,7 @@ Feature: Data entry
   We as the database maintenance folks
   Want to keep be able to enter data and edit data
   
+  @passing
   Scenario: Create new membership
     Given I am on the new membership page
 		When I fill in the following:
@@ -19,7 +20,7 @@ Feature: Data entry
 		And I should see "314 Thimbleberry Lane"
 		
 		
-		
+	@passing
 	Scenario: Create new membership and members at the same time
 		Given I am on the new membership page
 		When I fill in the following:
@@ -38,7 +39,7 @@ Feature: Data entry
 		And I should see "Devon"
 		And I should see "Smith"
 		
-	
+	@passing
 	Scenario: Viewing memberships with no members
     Given the following memberships exist
       | home_address    | email             | phone     |
@@ -47,13 +48,13 @@ Feature: Data entry
 		Then I should see "There are currently no members associated with this membership"
 		
 		
-	@wip
+	@javascrit @failing
 	Scenario: Create fields for additional members
 		Given I am on the new membership page
 		When I follow "Add Member"
 		Then I should see 2 member field sets
 		
-	
+	@passing
 	Scenario: Adding members from Membership page view
 		Given a membership exists with id: "1"
 		And I am on the membership's page
@@ -71,7 +72,7 @@ Feature: Data entry
 		And I should see "Smith"
 		And I should see "devonsmith@mullberry.com"
 
-	
+	@passing
 	Scenario: Editing membership data
 		Given a membership exists with home_address: "312 Thimbleberry"
 		And I am on the membership's page
@@ -105,6 +106,7 @@ Feature: Data entry
   # of the tags above is to modify your views to use <button> instead. You can
   # see how in http://github.com/jnicklas/capybara/issues#issue/12
   #
+  @passing
   Scenario: Delete data_entry
     Given the following memberships exist
       | home_address           | email               | phone       | number |
@@ -119,7 +121,7 @@ Feature: Data entry
 		And I should not see "Membership Number 1"
 		And 3 memberships should exist
 		
-	@javascript
+	@javascript @failing
 	Scenario Outline: Add renewal data
 		Given a membership exists
 		And I am on the memberships page
@@ -146,7 +148,7 @@ Feature: Data entry
 		 |        | check   | barter        |
 		 | 34.456 | uncheck | $34.46        |
 		
-	@javascript
+	@javascript @passing
 	Scenario: Add multiple renewal dates
 		Given a membership exists
 		And that membership has 1 renewal
@@ -160,7 +162,7 @@ Feature: Data entry
 		And I should see "this is a silly note"
 		And 2 renewals should exist
 		
-	@javascript
+	@javascript @passing
 	Scenario: Delete renewal and records in form
 		Given a membership exists
 		And that membership has 1 renewal

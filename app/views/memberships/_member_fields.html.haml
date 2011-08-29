@@ -1,0 +1,9 @@
+.member{:id => (f.object.id ? "member_#{f.object.id}" : nil)}
+	%h4 Membership
+	= f.object.new_record? ? link_to_function("Remove", "$(this).closest('.member').remove()") : delete_member_link("Delete Record", f.object.id)
+	= f.inputs do
+		= f.input :first_name
+		= f.input :last_name
+		= f.input :email
+		= f.input :phone
+		= f.input :notes, :label => "Notes (volunteer skills)"

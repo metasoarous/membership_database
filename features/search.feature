@@ -20,7 +20,7 @@ Feature: Search
 		 | Leanna     | Churchill | leanna@foo.com       |              | 2             |
 		 | Dianne     | Suthers   | dainne@foo.com       |              | 3             |
 	
-	
+	@passing
 	Scenario: Searching by last name only
 		Given I am on the home page
 		When I select "Last Name" from "Search by"
@@ -37,6 +37,7 @@ Feature: Search
 		And I should see "123-4567"
 		
 	# Should probably spec out what happens to numbers that are similar - 224 and 24.
+	@passing
 	Scenario: Searching by membership number
 		Given I am on the home page
 		When I select "Membership Number" from "Search by"
@@ -45,6 +46,7 @@ Feature: Search
 		Then I should see "There is 1 match for your query."
 		And I should see "4739 Jack Terrier Lane"
 		
+	@passing
 	Scenario: Searching by blank field returns error
 		Given I am on the home page
 		When I fill in "This shouldn't work" for "Query"
